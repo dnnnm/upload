@@ -8,8 +8,8 @@ const fs = require('fs');
 const storage = multer.diskStorage({
   destination: './public/uploads/',
   filename: function (req, file, callback) {
-    //callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    callback(null, file.originalname)
+    callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    //callback(null, file.originalname)
   },
 });
 
@@ -20,7 +20,7 @@ const upload = multer({
   fileFilter: function (req, file, callback) {
     checkFileType(file, callback);
   },
-}).single('myFile');
+}).single('dnm');
 
 let imageUpload = null;
 
