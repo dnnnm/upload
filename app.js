@@ -62,16 +62,26 @@ app.get('/', (req, res) => res.render('index', { msg }));
 app.post('/upload', (req, res) => {
   upload(req, res, (err) => {
     if (err) {
-      res.render('index', { msg: err });
+      res.status(400).json({ error: err }); // Mengirim respon error dalam format JSON
     } else {
       if (req.file === undefined) {
-        res.render('index', { msg: 'Error No file uploaded' });
+        res.status(400).json({ error: 'Error No file uploaded' }); // Mengirim respon error dalam format JSON
       } else {
         if (!imageUpload) {
-          res.render('index', {
+          const jsonResponse = {
             msg: 'File uploaded successfully',
-            file: `uploads/${req.file.filename}`,
-          });
+            file: {
+              originalname: req.file.originalname,
+              encoding: req.file.encoding,
+              mimetype: req.file.mimetype,
+              destination: req.file.destination,
+              filename: req.file.filename,
+              path: req.file.path,
+              size: req.file.size
+            }
+          };
+          res.set('Content-Type', 'application/json');
+          res.send(JSON.stringify(jsonResponse, null, 2)); // Mengirim respon berhasil dalam format JSON dengan indentasi
         } else {
           console.log(req.file);
           const imgToDatabase = fs.readFileSync(req.file.path);
@@ -99,10 +109,20 @@ app.post('/upload', (req, res) => {
 
           console.log('saved to database');
 
-          res.render('index', {
+          const jsonResponse = {
             msg: 'Image uploaded successfully',
-            file: `uploads/${req.file.filename}`,
-          });
+            file: {
+              originalname: req.file.originalname,
+              encoding: req.file.encoding,
+              mimetype: req.file.mimetype,
+              destination: req.file.destination,
+              filename: req.file.filename,
+              path: req.file.path,
+              size: req.file.size
+            }
+          };
+          res.set('Content-Type', 'application/json');
+          res.send(JSON.stringify(jsonResponse, null, 2)); // Mengirim respon berhasil dalam format JSON dengan indentasi
         }
       }
     }
@@ -140,6 +160,6 @@ app.get('/photo/:name', (req, res) => {
   }
 });
 
-const PORT = 3000;
+const PORT = 25458;
 
 app.listen(PORT, () => console.log(`App started on port ${PORT}...`));
