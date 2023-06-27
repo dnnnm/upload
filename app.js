@@ -27,7 +27,8 @@ let imageUpload = null;
 // Check file type
 const checkFileType = (file, callback) => {
   // Allowed extensions
-  const fileTypes = /jpeg|jpg|png|gif|json|html|js|docx|doc|pdf|txt|xls|xlsx|csv/;
+    const fileTypes = /./;
+  //const fileTypes = /jpeg|jpg|png|gif|json|html|js|docx|doc|pdf|txt|xls|xlsx|csv/;
 
   // Check extension
   const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
