@@ -1,46 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Node File Uploads</title>
-      <!-- Compiled and minified CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-      <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"></script>
-      <!-- Compiled and minified JavaScript -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>            
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Node File Uploads</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style>
+    body {
+      background-color: #1c1c1c;
+      color: #fff;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: #282828;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .file-field .btn {
+      background-color: #212121;
+      color: #fff;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .file-field .btn:hover {
+      background-color: #303030;
+    }
+
+    .file-path-wrapper {
+      margin-bottom: 0;
+    }
+
+    .materialboxed {
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ccc;
+    }
+
+    .upload-button {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .upload-button button {
+      background-color: #212121;
+      color: #fff;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .upload-button button:hover {
+      background-color: #303030;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <a href="/" style="color:black">
-            <h1>File Upload</h1>
-        </a>
-        <%= typeof msg != 'undefined' ? msg : '' %>
-        <form action="/upload" method="POST" enctype="multipart/form-data">
-            <div class="file-field input-field">
-              <div class="btn grey">
-                <span>File</span>
-                <input type="file" name="dnm">
-              </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-              </div>
-              <button type="submit" class="btn">
-                  Submit
-              </button>
-            </div>
-          </form>
-        <br>
-        <div class="container">
-                <a href="/photos" target="_blank">View photo names in database</a>
+  <div class="container">
+    <a href="/" style="color:black">
+      <h1>File Upload</h1>
+    </a>
+    <%= typeof msg != 'undefined' ? msg : '' %>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Choose File</span>
+          <input type="file" name="dnm">
         </div>
-        
-        <img src="<%= typeof file != 'undefined' ? file : '' %>" alt="" class="materialboxed" width="650">
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
+      <div class="upload-button">
+        <button class="btn" type="submit">Upload</button>
+      </div>
+    </form>
+    <br>
+    <div class="container" style="text-align: center;">
+      <a href="/photos" target="_blank">View photo names in database</a>
     </div>
-    
+
+    <img src="<%= typeof file != 'undefined' ? file : '' %>" alt="" class="materialboxed" width="650">
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
+
 </html>
