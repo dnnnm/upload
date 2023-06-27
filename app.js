@@ -161,6 +161,14 @@ app.get('/photo/:name', (req, res) => {
   }
 });
 
+// Handle GET request for uploaded file
+app.get('/upload/:filename', (req, res) => {
+  const filename = req.params.filename;
+  const filePath = path.join(__dirname, 'public', 'uploads', filename);
+  
+  res.sendFile(filePath);
+});
+
 const PORT = 25458;
 
 app.listen(PORT, () => console.log(`App started on port ${PORT}...`));
