@@ -69,6 +69,7 @@ app.post('/upload', (req, res) => {
         res.status(400).json({ error: 'Error No file uploaded' }); // Mengirim respon error dalam format JSON
       } else {
         if (!imageUpload) {
+            const fileUrl = `http://212.227.119.161:25458/uploads/${req.file.filename}`;
           const jsonResponse = {
             msg: 'File uploaded successfully',
             file: {
@@ -78,7 +79,8 @@ app.post('/upload', (req, res) => {
               destination: req.file.destination,
               filename: req.file.filename,
               path: req.file.path,
-              size: req.file.size
+              size: req.file.size,
+              url: fileUrl
             }
           };
           res.set('Content-Type', 'application/json');
@@ -109,7 +111,8 @@ app.post('/upload', (req, res) => {
           fs.writeFileSync(dbPath, JSON.stringify(jsonData));
 
           console.log('saved to database');
-
+            
+            const fileUrl = `http://212.227.119.161:25458/uploads/${req.file.filename}`;
           const jsonResponse = {
             msg: 'Image uploaded successfully',
             file: {
@@ -119,7 +122,8 @@ app.post('/upload', (req, res) => {
               destination: req.file.destination,
               filename: req.file.filename,
               path: req.file.path,
-              size: req.file.size
+              size: req.file.size,
+              url: fileUrl
             }
           };
           res.set('Content-Type', 'application/json');
