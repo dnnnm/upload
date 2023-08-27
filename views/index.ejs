@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,34 +7,42 @@
   <title>Node File Uploads</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <style>
-    body {
-      background-color: #1c1c1c;
-      color: #fff;
+    html, body {
+      background-color: #262626;
+      color: #F5F9FC;
       padding: 20px;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .container {
-      background-color: #282828;
-      border-radius: 10px;
+      background-color: #0F1726;
+      border-radius: 16px;
       padding: 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 16px 32px rgba(2, 2, 3, 0.48);
     }
 
     h1 {
       text-align: center;
       margin-bottom: 20px;
-      color: #fff;
+      color: #F5F9FC;
     }
 
     .file-field .btn {
-      background-color: #212121;
-      color: #fff;
+      background-color: #262626;
+      color: #F5F9FC;
       border-radius: 5px;
       transition: background-color 0.3s ease;
     }
 
     .file-field .btn:hover {
-      background-color: #303030;
+      background-color: #0F1726;
     }
 
     .file-path-wrapper {
@@ -44,11 +51,11 @@
 
     .materialboxed {
       border-radius: 5px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 16px 32px rgba(2, 2, 3, 0.48);
     }
 
     a {
-      color: #fff;
+      color: #F5F9FC;
       text-decoration: none;
     }
 
@@ -62,21 +69,20 @@
     }
 
     .upload-button button {
-      background-color: #212121;
-      color: #fff;
+      background-color: #262626;
+      color: #F5F9FC;
       border-radius: 5px;
       transition: background-color 0.3s ease;
     }
 
     .upload-button button:hover {
-      background-color: #303030;
+      background-color: #0F1726;
     }
   </style>
 </head>
-
 <body>
   <div class="container">
-    <a href="/" style="color:black">
+    <a href="/" style="color: black;">
       <h1>File Upload</h1>
     </a>
     <%= typeof msg != 'undefined' ? msg : '' %>
@@ -95,14 +101,9 @@
       </div>
     </form>
     <br>
-    <div class="container" style="text-align: center;">
-      <a href="/photos" target="_blank">View photo names in database</a>
-    </div>
-
     <img src="<%= typeof file != 'undefined' ? file : '' %>" alt="" class="materialboxed" width="650">
   </div>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
-
 </html>
