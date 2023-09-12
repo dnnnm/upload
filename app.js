@@ -6,7 +6,7 @@ const fs = require('fs');
 
 // Set storage engine
 const storage = multer.diskStorage({
-  destination: './public/uploads/',
+  destination: './public/u/',
   filename: function (req, file, callback) {
     callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     //callback(null, file.originalname)
@@ -20,7 +20,7 @@ const upload = multer({
   fileFilter: function (req, file, callback) {
     checkFileType(file, callback);
   },
-}).single('dnm');
+}).single('p');
 
 let imageUpload = null;
 
@@ -69,7 +69,7 @@ app.post('/upload', (req, res) => {
         res.status(400).json({ error: 'Error No file uploaded' }); // Mengirim respon error dalam format JSON
       } else {
         if (!imageUpload) {
-            const fileUrl = `http://212.227.119.161:25458/uploads/${req.file.filename}`;
+            const fileUrl = `https://up.dnm.my.id/u/${req.file.filename}`;
           const jsonResponse = {
             msg: 'File uploaded successfully',
             file: {
@@ -112,7 +112,7 @@ app.post('/upload', (req, res) => {
 
           console.log('saved to database');
             
-            const fileUrl = `http://212.227.119.161:25458/uploads/${req.file.filename}`;
+            const fileUrl = `https://up.dnm.my.id/u/${req.file.filename}`;
           const jsonResponse = {
             msg: 'Image uploaded successfully',
             file: {
@@ -141,7 +141,7 @@ app.get('/photos', (req, res) => {
   const data = fs.readFileSync(dbPath, 'utf8');
   const jsonData = JSON.parse(data);
 
-  const imageUrls = jsonData.imageUploadTest.map((element) => `http://localhost:3000/photo/${element.imageName}`);
+  const imageUrls = jsonData.imageUploadTest.map((element) => `https://up.dnm.my.id/photo/${element.imageName}`);
 
   res.render('photos', { imageUrls });
 });
@@ -168,11 +168,11 @@ app.get('/photo/:name', (req, res) => {
 // Handle GET request for uploaded file
 app.get('/upload/:filename', (req, res) => {
   const filename = req.params.filename;
-  const filePath = path.join(__dirname, 'public', 'uploads', filename);
+  const filePath = path.join(__dirname, 'public', 'u', filename);
   
   res.sendFile(filePath);
 });
 
-const PORT = 25458;
+const PORT = 443;
 
 app.listen(PORT, () => console.log(`App started on port ${PORT}...`));
