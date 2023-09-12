@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Node File Uploads</title>
+  <title>File Upload</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <style>
     html, body {
@@ -32,6 +32,7 @@
       text-align: center;
       margin-bottom: 20px;
       color: #F5F9FC;
+      font-family: 'ADLaM Display', cursive;
     }
 
     .file-field .btn {
@@ -39,10 +40,12 @@
       color: #F5F9FC;
       border-radius: 5px;
       transition: background-color 0.3s ease;
+      font-family: 'ADLaM Display', cursive;
     }
 
     .file-field .btn:hover {
       background-color: #0F1726;
+      font-family: 'ADLaM Display', cursive;
     }
 
     .file-path-wrapper {
@@ -66,6 +69,7 @@
     .upload-button {
       margin-top: 20px;
       text-align: center;
+      font-family: 'ADLaM Display', cursive;
     }
 
     .upload-button button {
@@ -73,10 +77,24 @@
       color: #F5F9FC;
       border-radius: 5px;
       transition: background-color 0.3s ease;
+      font-family: 'ADLaM Display', cursive;
     }
 
     .upload-button button:hover {
       background-color: #0F1726;
+    }
+
+    /* Menambahkan gaya untuk teks "rendang:v" */
+    .donation-text {
+      font-family: 'Cascadia Code', sans-serif;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    /* Menambahkan gaya untuk tautan "rendang:v" */
+    .donation-link {
+      color: #0077FF;
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -86,11 +104,12 @@
       <h1>File Upload</h1>
     </a>
     <%= typeof msg != 'undefined' ? msg : '' %>
+    <!-- Tambahkan teks "Please Donate to keep our server online:(" dengan font monospace -->
     <form action="/upload" method="POST" enctype="multipart/form-data">
       <div class="file-field input-field">
         <div class="btn">
           <span>Choose File</span>
-          <input type="file" name="dnm">
+          <input type="file" name="p">
         </div>
         <div class="file-path-wrapper">
           <input class="file-path validate" type="text">
@@ -102,6 +121,10 @@
     </form>
     <br>
     <img src="<%= typeof file != 'undefined' ? file : '' %>" alt="" class="materialboxed" width="650">
+    <!-- Tambahkan copyright dengan font monospace -->
+    <p class="donation-text">
+      buy me <a href="https://saweria.co/dnnm" target="_blank" class="donation-link">rendang:v</a> | &copy; 2023
+    </p>
   </div>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
